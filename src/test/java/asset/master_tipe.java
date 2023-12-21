@@ -4,13 +4,17 @@ import com.microsoft.playwright.*;
 import org.junit.jupiter.api.DisplayName;
 import org.testng.annotations.Test;
 
+import java.nio.file.Paths;
+
 public class master_tipe {
     @Test
     @DisplayName("Created Master Tipe")
     public void master_tipe (){
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        Page page = browser.newPage();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
+        BrowserContext newContext = browser.newContext(
+                new Browser.NewContextOptions().setRecordVideoDir(Paths.get("Videos/")).setRecordVideoSize(1280, 720));
+        Page page = newContext.newPage();
         page.navigate("https://morenasys.demo.pkp.co.id/mainlogin.zul");
         page.locator("//body[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/" +
                 "tr[1]/td[1]/div[1]/div[1]/div[2]/form[1]/div[4]/div[3]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/input[1]").fill("1017");
@@ -53,6 +57,20 @@ public class master_tipe {
         page.locator("//body[1]/div[3]/div[2]/div[1]/div[4]/table[1]/tbody[1]/tr[1]/td[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/button[1]/img[1]").click();
         ElementHandle validasiOK = page.waitForSelector("//button[contains(@class, 'z-messagebox-button') and contains(@class, 'z-button')]");
         validasiOK.click();
+
+        ElementHandle buttonFind = page.waitForSelector("//body[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[3]/div[1]/div[3]/table[1]/tbody[1]/tr[3]/td[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/button[1]");
+        buttonFind.click();
+        ElementHandle buttonYesFind = page.waitForSelector("//body[1]/div[4]/div[2]/table[2]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/button[1]");
+        buttonYesFind.click();
+
+
+        String newCategory = page.textContent("//body[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[8]/td[2]/div[1]"); // Ganti dengan locator untuk data yang ditambahkan
+
+        if (newCategory.contains("10")) {
+            System.out.println("Data kategori berhasil ditambahkan!");
+        } else {
+            System.out.println("Data kategori tidak ditemukan atau tidak sesuai.");
+        }
 
 
 
