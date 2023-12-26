@@ -30,13 +30,16 @@ public class master_tipe {
             System.out.println("Kamu gagal login");
         }
 
+        ElementHandle Funding = page.waitForSelector("//div[contains(@class, 'z-listcell-content') and text()='FUNDING SUPERVISOR']");
+        Funding.click();
+
         ElementHandle operationalElement = page.waitForSelector("//span[contains(text(),'OPERATIONAL')]");
         operationalElement.click();
 
         ElementHandle AssetElement = page.waitForSelector("//span[contains(text(),'ASSET')]");
         AssetElement.click();
 
-        ElementHandle setupkategoripengadaan = page.waitForSelector("//body[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[9]/td[1]/div[1]/span[4]");
+        ElementHandle setupkategoripengadaan = page.waitForSelector("//body[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[3]/td[1]/div[1]/span[4]");
         setupkategoripengadaan.click();
 
         ElementHandle menusetupkategoripengadaan = page.waitForSelector("//span[contains(text(), 'Setup Kategori Pengadaan')]");
@@ -48,8 +51,8 @@ public class master_tipe {
 
         ElementHandle buttonNew = page.waitForSelector("//button[contains(text(), 'New')]");
         buttonNew.click();
-        page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/input[1]").fill("Pesawat");
-        page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/input[1]").fill("Pesawat");
+        page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[1]/td[2]/div[1]/input[1]").fill("Tank");
+        page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/input[1]").fill("Tank");
         page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[5]/td[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/input[1]").fill("20");
         page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[6]/td[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/input[1]").fill("10");
         page.locator("//body[1]/div[3]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[7]/td[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/input[1]").fill("5");
@@ -60,13 +63,13 @@ public class master_tipe {
 
         ElementHandle buttonFind = page.waitForSelector("//body[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[3]/div[1]/div[3]/table[1]/tbody[1]/tr[3]/td[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/button[1]");
         buttonFind.click();
-        ElementHandle buttonYesFind = page.waitForSelector("//body[1]/div[4]/div[2]/table[2]/tbody[1]/tr[1]/td[1]/table[1]/tbody[1]/tr[1]/td[1]/button[1]");
+        ElementHandle buttonYesFind = page.waitForSelector("//button[contains(@class, 'z-messagebox-button') and contains(text(), 'Yes')]");
         buttonYesFind.click();
 
 
-        String newCategory = page.textContent("//body[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[3]/table[1]/tbody[1]/tr[8]/td[2]/div[1]"); // Ganti dengan locator untuk data yang ditambahkan
+        String newCategory = page.textContent("//div[contains(@class, 'z-listcell-content') and contains(text(), 'Tank')]"); // Ganti dengan locator untuk data yang ditambahkan
 
-        if (newCategory.contains("10")) {
+        if (newCategory.contains("Tank")) {
             System.out.println("Data kategori berhasil ditambahkan!");
         } else {
             System.out.println("Data kategori tidak ditemukan atau tidak sesuai.");
